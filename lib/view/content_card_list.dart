@@ -6,8 +6,8 @@ import 'package:logger/logger.dart';
 
 import 'content_card_item.dart';
 
-class CardList extends StatelessWidget {
-  CardList({Key? key}) : super(key: key);
+class ContentCardList extends StatelessWidget {
+  ContentCardList({Key? key}) : super(key: key);
 
   final Logger logger = Logger();
 

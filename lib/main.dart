@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:language/app_routes.dart';
+import 'package:language/controller/auth_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,17 +12,22 @@ void main() async {
   FirebaseFirestore.instance.settings =
       const Settings(persistenceEnabled: false);
 
-  runApp(const MyApp());
+  Get.testMode = true;
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  final AuthController authController = Get.put<AuthController>(AuthController());
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return GetMaterialApp(
-      initialRoute: "/",
+      initialRoute: "/login",
       getPages: AppRoutes.routes,
     );
   }
