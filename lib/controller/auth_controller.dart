@@ -11,7 +11,7 @@ class AuthController extends GetxController {
   Logger logger = Logger();
 
   static AuthController to = Get.find();
-  RxBool isLogged = false.obs;
+  //RxBool isLogged = false.obs;
   TextEditingController? emailController;
   TextEditingController? passwordController;
   AuthService? _authService;
@@ -19,30 +19,28 @@ class AuthController extends GetxController {
 
   AuthController() {
     _authService = AuthService();
-    _authService?.onAuthChanged().listen((event) {
-      logger.d("onAuthChanged");
-      logger.d("${user.value}");
-      isLogged.value = event != null;
-      user.value = event;
-    });
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
   }
 
 
   @override
-  void onInit() async {
-    ever(isLogged, handleAuthChanged);
-    user.value = await _authService?.getCurrentUser();
-    isLogged.value = user.value != null;
+  void onReady() async {
+
+    logger.d("onInit");
+    ever(user, handleAuthChanged);
+    user.value = _authService?.getCurrentUser();
+
+    user.bindStream(_authService!.onAuthChanged());
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
 
     logger.d("$user");
 
-    super.onInit();
+    super.onReady();
   }
 
-  handleAuthChanged(isLoggedIn) {
-    if (isLoggedIn == false) {
+  handleAuthChanged(user) {
+    logger.d("handleAuthChanged");
+    if (user == null) {
       logger.d("Go /login");
       Get.offAllNamed("/login");
     } else {

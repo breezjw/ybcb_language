@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:language/controller/auth_controller.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginView extends StatelessWidget {
   final AuthController authController = AuthController.to;
 
   @override

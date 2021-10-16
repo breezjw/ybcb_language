@@ -10,6 +10,7 @@ class AuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   Stream<User?> onAuthChanged() {
+    logger.d("onAuthChanged");
     return _firebaseAuth.authStateChanges();
   }
 
@@ -35,7 +36,7 @@ class AuthService {
     return currentUser != null;
   }
 
-  Future<User> getCurrentUser() async {
+  User getCurrentUser()  {
     return _firebaseAuth.currentUser!;
   }
 
