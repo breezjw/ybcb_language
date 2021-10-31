@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:language/controller/content_card_controller.dart';
@@ -17,7 +18,7 @@ class ContentCardList extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("YBCB Language"),
+        title: const Text("app_title").tr(),
       ),
       body: Obx(() {
         if (cardController.isLoadingCards.value) {

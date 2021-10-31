@@ -9,6 +9,8 @@ class SplashScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get.put<AuthController>(AuthController());
+
     return const Scaffold(
       body: Center(
         child: CircularProgressIndicator(),
