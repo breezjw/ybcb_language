@@ -1,6 +1,8 @@
 {
   "app_title": "온돌 단어장",
 
+  "drawer_menu_sign_out": "로그아웃",
+
   "card_title": "제목: {}",
   "card_state_not_read": "읽지 않음",
   "card_state_read": "읽음"

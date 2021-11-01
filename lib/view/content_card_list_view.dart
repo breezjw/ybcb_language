@@ -2,6 +2,7 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:language/controller/auth_controller.dart';
 import 'package:language/controller/content_card_controller.dart';
 import 'package:logger/logger.dart';
 
@@ -12,6 +13,8 @@ class ContentCardList extends StatelessWidget {
 
   final Logger logger = Logger();
 
+  final AuthController authController = AuthController.to;
+
   @override
   Widget build(BuildContext context) {
     CardController cardController = Get.put<CardController>(CardController());
@@ -19,6 +22,21 @@ class ContentCardList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("app_title").tr(),
+        actions: const <Widget>[
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text("drawer_menu_sign_out").tr(),
+              onTap: () {
+                authController.handleSignOut();
+              },
+            )
+          ],
+        ),
       ),
       body: Obx(() {
         if (cardController.isLoadingCards.value) {

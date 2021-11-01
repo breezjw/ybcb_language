@@ -83,4 +83,8 @@ class AuthController extends GetxController {
       logger.e(e);
     }
   }
+
+  handleSignOut() {
+    _authService?.signOut();
+  }
 }
