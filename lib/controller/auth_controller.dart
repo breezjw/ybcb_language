@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:language/view/content_card_list_view.dart';
+import 'package:language/view/main_view.dart';
 import 'package:logger/logger.dart';
 import 'package:language/service/fireauth/auth_service.dart';
 
@@ -46,7 +47,7 @@ class AuthController extends GetxController {
       Get.offAllNamed("/login");
     } else {
       logger.d("Go /");
-      Get.to(ContentCardList());
+      Get.offAll(MainView());
     }
   }
 

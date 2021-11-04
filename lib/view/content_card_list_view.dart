@@ -19,42 +19,22 @@ class ContentCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     CardController cardController = Get.put<CardController>(CardController());
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("app_title").tr(),
-        actions: const <Widget>[
-        ],
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text("drawer_menu_sign_out").tr(),
-              onTap: () {
-                authController.handleSignOut();
-              },
-            )
-          ],
-        ),
-      ),
-      body: Obx(() {
-        if (cardController.isLoadingCards.value) {
-          return Container(child: Center(child: CircularProgressIndicator()));
-        }
+    return Obx(() {
+      if (cardController.isLoadingCards.value) {
+        return Container(child: Center(child: CircularProgressIndicator()));
+      }
 
-        if (cardController.cards.length == 0) {
-          return Center(child: Text('Nothing to do'));
-        }
+      if (cardController.cards.length == 0) {
+        return Center(child: Text('Nothing to do'));
+      }
 
-        logger.d(cardController.cards[0].title);
+      logger.d(cardController.cards[0].title);
 
-        return ListView.builder(
-          itemCount: cardController.cards.length,
-          itemBuilder: (context, index) {
-            return CardItem(cardController.cards.elementAt(index));
-          });
-      }),
-    );
+      return ListView.builder(
+        itemCount: cardController.cards.length,
+        itemBuilder: (context, index) {
+          return CardItem(cardController.cards.elementAt(index));
+        });
+    });
   }
 }
